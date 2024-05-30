@@ -19,7 +19,7 @@ jobs:
       run: |
         docker run myapp:${{ github.sha }} npm test
     - name: Push Docker Image
-      if: success()
+      if: needs.build.result == 'success'
       run: |  
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         docker push myapp:${{ github.sha }}
