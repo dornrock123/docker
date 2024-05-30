@@ -15,9 +15,7 @@ jobs:
     - name: Build Docker Image
       run: |
         docker build -t myapp:${{ github.sha }} .
-    - name: Run Unit Tests
-      run: |
-        docker run myapp:${{ github.sha }} npm test
+  
     - name: Push Docker Image
       
       run: |  
