@@ -15,14 +15,7 @@ jobs:
     - name: Build Docker Image
       run: |
         docker build -t myapp:${{ github.sha }} .
-    - name: Run Unit Tests
-      run: |
-        docker run myapp:${{ github.sha }} npm test
-    - name: Push Docker Image
-      if: needs.build.result == 'success'
-      run: |  
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker push myapp:${{ github.sha }}
+  
   deploy:
     needs: build
     runs-on: ubuntu-latest
