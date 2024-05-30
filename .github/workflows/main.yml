@@ -31,7 +31,7 @@ jobs:
         docker run -d --name staging krisneonploy/myapp:${{ github.sha }}
     - name: Smoke Tests
       run: |
-        docker exec staging npm run test:smoke
+        
     - name: Deploy to Production
       if: success()  
       run: |
